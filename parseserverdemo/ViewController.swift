@@ -63,7 +63,9 @@ class ViewController: UIViewController {
                     
                     if error == nil {
                         //Signup successful
-                        print("signed up")
+                        print("signed up") // for testing the data
+                        //Segue Operation to the table view controller after signup successfully.
+                        self.performSegueWithIdentifier("login", sender: self)
                         
                     } else {
                         
@@ -86,7 +88,9 @@ class ViewController: UIViewController {
                     if user != nil {
                         
                         //logged in
-                        print("logged in")
+                        print("logged in") //for testing the data.
+                        //Segue Operation to the table view controller after signup successfully.
+                        self.performSegueWithIdentifier("login", sender: self)
                         
                     } else {
                         
@@ -124,32 +128,16 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        if PFUser.currentUser() != nil {
+            self.performSegueWithIdentifier("login", sender: self)
+        }
+        
+    }
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        /*
-        let product = PFObject(className: "Products")
-        product["name"] = "Ice cream"
-        product["description"] = "Tutti Fruity"
-        product["price"] = 4.99
-        
-        product.saveInBackgroundWithBlock { (success, error) -> Void in
-        if success == true {
-        print("Object saved with ID \(product.objectId)")
-        } else {
-        print("Failed \(error)")
-        }
-        }
-        
-        let query = PFQuery(className: "Products")
-        query.getObjectInBackgroundWithId("zjbOyAgOLA") { (object, error) -> Void in
-        if object != nil {
-        print(object!.objectForKey("description")!)
-        } else {
-        print(error)
-        }
-        }
-        */
         
     }
     

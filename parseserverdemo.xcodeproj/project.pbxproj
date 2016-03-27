@@ -12,6 +12,7 @@
 		2161A78D1CA477A700430245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2161A78B1CA477A700430245 /* Main.storyboard */; };
 		2161A78F1CA477A700430245 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2161A78E1CA477A700430245 /* Assets.xcassets */; };
 		2161A7921CA477A700430245 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2161A7901CA477A700430245 /* LaunchScreen.storyboard */; };
+		217B434B1CA86C91008E515F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217B434A1CA86C91008E515F /* TableViewController.swift */; };
 		843A0DCB2A843DCD206142A8 /* Pods_parseserverdemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 189922F5C2400A963FFC9916 /* Pods_parseserverdemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		2161A78E1CA477A700430245 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2161A7911CA477A700430245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2161A7931CA477A700430245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		217B434A1CA86C91008E515F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		564EA32EAD7F1CD3756C964A /* Pods-parseserverdemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parseserverdemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parseserverdemo/Pods-parseserverdemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FE71473557FC2FE54907EF17 /* Pods-parseserverdemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parseserverdemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-parseserverdemo/Pods-parseserverdemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +65,7 @@
 			children = (
 				2161A7871CA477A700430245 /* AppDelegate.swift */,
 				2161A7891CA477A700430245 /* ViewController.swift */,
+				217B434A1CA86C91008E515F /* TableViewController.swift */,
 				2161A78B1CA477A700430245 /* Main.storyboard */,
 				2161A78E1CA477A700430245 /* Assets.xcassets */,
 				2161A7901CA477A700430245 /* LaunchScreen.storyboard */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2161A78A1CA477A700430245 /* ViewController.swift in Sources */,
+				217B434B1CA86C91008E515F /* TableViewController.swift in Sources */,
 				2161A7881CA477A700430245 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
