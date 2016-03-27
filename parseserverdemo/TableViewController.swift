@@ -13,6 +13,7 @@ class TableViewController: UITableViewController {
     
     var username = [""]
     var userid = [""]
+    var isFollowing = ["":false]
     
     
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class TableViewController: UITableViewController {
                 
                 self.username.removeAll(keepCapacity: true)
                 self.userid.removeAll(keepCapacity: true)
+                self.isFollowing.removeAll(keepCapacity: true)
                 
                 for object in users {
                     
@@ -38,12 +40,40 @@ class TableViewController: UITableViewController {
                             self.username.append(user.username!)
                             self.userid.append(object.objectId!)
                             
+                            let query = PFQuery(className: "Followers")
+                            
+                            query.whereKey("follower", equalTo: (PFUser.currentUser()!.objectId)!)
+                            query.whereKey("following", equalTo: user.objectId!)
+                            
+                            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                                
+                                if let objects = objects {
+                                    
+                                    if objects.count > 0 {
+                                        
+                                        self.isFollowing[user.objectId!] = true
+                                        
+                                    } else {
+                                        
+                                        self.isFollowing[user.objectId!] = false
+                                        
+                                    }
+                                }
+                                
+                                if self.isFollowing.count == self.username.count {
+                                    
+                                    self.tableView.reloadData()
+                                    
+                                }
+                                
+                            })
+                            
                         }
                     }
                 }
             }
             
-            self.tableView.reloadData()
+            
             
         })
     }
@@ -70,12 +100,57 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         cell.textLabel?.text = username[indexPath.row]
+        
+        let followedObjectId = userid[indexPath.row]
+        
+        if isFollowing[followedObjectId] == true {
+            
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("tap detected")
+        print(indexPath.row)
+        
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        
+        let followedObjectId = userid[indexPath.row]
+        
+        if isFollowing[followedObjectId] == false {
+            
+            isFollowing[followedObjectId] = true
+            
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            let following = PFObject(className: "Followers")
+            following["following"] = userid[indexPath.row]
+            following["follower"] = PFUser.currentUser()?.objectId
+            
+            following.saveInBackground()
+        } else {
+            
+            isFollowing[followedObjectId] = false
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            
+            let query = PFQuery(className: "Followers")
+            
+            query.whereKey("follower", equalTo: (PFUser.currentUser()!.objectId)!)
+            query.whereKey("following", equalTo: userid[indexPath.row])
+            
+            query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        object.deleteInBackground()
+                    }
+                }
+            })
+        }
     }
+    
     
     
     /*
