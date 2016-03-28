@@ -27,6 +27,7 @@ class TableViewController: UITableViewController {
         refresh()
     }
     
+    
     func refresh(){
         
         tableView.tableFooterView = UIView()
