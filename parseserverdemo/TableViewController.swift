@@ -14,10 +14,20 @@ class TableViewController: UITableViewController {
     var username = [""]
     var userid = [""]
     var isFollowing = ["":false]
+    var refresher: UIRefreshControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refresher)
+        refresh()
+    }
+    
+    func refresh(){
         
         tableView.tableFooterView = UIView()
         self.navigationItem.title = "People you may know"
@@ -63,18 +73,14 @@ class TableViewController: UITableViewController {
                                 if self.isFollowing.count == self.username.count {
                                     
                                     self.tableView.reloadData()
+                                    self.refresher.endRefreshing()
                                     
                                 }
-                                
                             })
-                            
                         }
                     }
                 }
             }
-            
-            
-            
         })
     }
     
