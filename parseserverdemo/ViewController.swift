@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         if usernameText.text == "" || passwordText.text == "" {
             
-            displayAlert("Error in form", message: "Please enter the Username & Password properly")
+            displayAlert("Empty form", message: "Please enter the Username & Password properly")
             
         } else {
             
